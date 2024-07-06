@@ -1,0 +1,58 @@
+.todo {
+    position: relative;
+    width: 40vw;
+    height: 200px;
+    margin: 2%;
+    border: 1px solid saddlebrown;
+    background-color: rgba(139, 69, 19, 0.518);
+}
+
+.containerContent {
+    width: 100%;
+    height: 80%;
+}
+
+.input {
+    width: 100%;
+    color: white;
+    background-color: rgba(139, 69, 19, 0.518);
+}
+.title {
+    width: 100%;
+    color: white;
+    background-color: rgba(139, 69, 19, 0.518);
+    height: 10%;
+}
+
+.content {
+    width: 100%;
+    color: white;
+    background-color: rgba(139, 69, 19, 0.518);
+    height: 60%;
+}
+
+.containerControllers {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100%;
+    height: 20%;
+}
+
+.checkbox {
+    width: 5%;
+}
+
+.button {
+    width: 200px;
+    height: 20px;
+    min-width: 40%;
+    border: none;
+    cursor: pointer;
+    transition: 0.7s ease-out;
+    &:hover {
+        color: white;
+        background-color: black;
+        transition: 0.9 ease-out;
+    }
+}

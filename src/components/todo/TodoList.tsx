@@ -1,11 +1,21 @@
-import { todo } from '../../types'
+import React from 'react'
 
-const TodoList = () => {
-    const todos: todo[] = [{ title: '12', content: 'ok' }]
+import TodoItem from './TodoItem'
+import { Todo } from '../../types'
+
+import stales from './TodoList.module.css'
+
+const TodoList = ({
+    listTodos,
+    setListTodos,
+}: {
+    listTodos: Todo[]
+    setListTodos: React.Dispatch<React.SetStateAction<Todo[]>>
+}) => {
     return (
-        <ul>
-            {todos.map((todo) => (
-                <li key={todo.title}>{todo.content}</li>
+        <ul className={stales.todoList}>
+            {listTodos.map((todo) => (
+                <TodoItem key={todo.id} todo={todo} setTodos={setListTodos} />
             ))}
         </ul>
     )

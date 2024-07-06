@@ -1,14 +1,9 @@
-import React from 'react'
-import Button from '../../UI/Button'
+import styles from './Header.module.css'
 
 const header = () => {
-    const createTodo = () => {
-        console.log(1)
-    }
-
     return (
-        <header>
-            <Button name="Создать заметку" getEvent={createTodo} />
+        <header className={styles.header}>
+            <h1>Мои заметки</h1>
         </header>
     )
 }

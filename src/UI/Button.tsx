@@ -1,12 +1,15 @@
-import React, { ReactNode } from 'react'
-
 type ButtonProps = {
+    className: string
     name: string
     getEvent: () => void
 }
 
-const Button = ({ name, getEvent }: ButtonProps) => {
-    return <button onClick={getEvent}>{name}</button>
+const Button = ({ className, name, getEvent }: ButtonProps) => {
+    return (
+        <button className={className} onClick={getEvent}>
+            {name}
+        </button>
+    )
 }
 
 export default Button
