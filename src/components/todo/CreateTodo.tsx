@@ -23,8 +23,8 @@ const CreateTodo = ({
     const [rate, setRate] = useState(0)
 
     const newTodo = {
-        id: listTodos.length + 2,
-        parentGroupTodos: parentGroup,
+        id: listTodos.length + 1,
+        parentGroupTodos: parentGroup.length > 0 ? parentGroup : 'Без группы',
         title: titleTodo,
         content: contentTodo,
         completed: false,
@@ -35,10 +35,10 @@ const CreateTodo = ({
         setTodos((prevState) => [...prevState, newTodo])
         console.log(newTodo)
     }
+
     const closeNewTodo = () => {
-        parentGroup.length > 0 ? parentGroup : setParentGroup('Без группы')
+        if (titleTodo.length > 0 && contentTodo.length > 0) addNewTodo()
         setIsOpenNewTodo((prevState) => !prevState)
-        addNewTodo()
     }
 
     return (
@@ -64,11 +64,18 @@ const CreateTodo = ({
                 ))}
             </select>
             <RateTodo rate={rate} setRate={setRate} />
-            <Button
-                className={styles.button}
-                name="Создать"
-                getEvent={closeNewTodo}
-            />
+            <div>
+                <Button
+                    className={styles.button}
+                    name="Создать"
+                    getEvent={closeNewTodo}
+                />
+                <Button
+                    className={styles.button}
+                    name="Закрыть"
+                    getEvent={closeNewTodo}
+                />
+            </div>
         </div>
     )
 }

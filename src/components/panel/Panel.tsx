@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 
 import Button from '../../UI/Button'
 import SearchBox from './SearchBox'
@@ -6,10 +6,12 @@ import SortBox from './SortBox'
 import { Todo } from '../../types'
 
 import styles from './Panel.module.css'
+import GroupList from './GroupList'
 
 const Panel = ({
     listTodos,
     setNewTodo,
+    todoGroup,
     setTodoGroup,
 }: {
     listTodos: Todo[]
@@ -26,15 +28,23 @@ const Panel = ({
     const createNewGroupTodo = (
         event: React.KeyboardEvent<HTMLInputElement>,
     ) => {
-        if (event.key === 'Enter' && openNewGroup) {
+        if (
+            event.key === 'Enter' &&
+            openNewGroup &&
+            event.target.value.length > 0
+        ) {
             setTodoGroup((prevState) => [...prevState, event.target.value])
+            setOpenNewGroup((prevState) => !prevState)
+        } else if (event.key === 'Escape') {
+            event.preventDefault()
             setOpenNewGroup((prevState) => !prevState)
         }
     }
 
-    const quantityCompletedTodo = listTodos.filter(
-        (todo) => todo.completed === true,
-    ).length
+    const quantityCompletedTodo = useMemo(
+        () => listTodos.filter((todo) => todo.completed === true).length,
+        [listTodos],
+    )
 
     return (
         <div className={styles.panel}>
@@ -56,7 +66,7 @@ const Panel = ({
                     className={styles.button}
                 />
             )}
-
+            <GroupList todoGroup={todoGroup} setTodoGroup={setTodoGroup} />
             <p>
                 Задач выполнено: {quantityCompletedTodo} из {listTodos.length}
             </p>
