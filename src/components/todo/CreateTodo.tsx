@@ -10,26 +10,35 @@ const CreateTodo = ({
     listTodos,
     setTodos,
     setIsOpenNewTodo,
+    todoGroup,
 }: {
     listTodos: Todo[]
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
     setIsOpenNewTodo: React.Dispatch<React.SetStateAction<boolean>>
+    todoGroup: string[]
 }) => {
     const [titleTodo, setTitleTodo] = useState('')
     const [contentTodo, setContentTodo] = useState('')
+    const [parentGroup, setParentGroup] = useState('')
     const [rate, setRate] = useState(0)
 
     const newTodo = {
-        id: listTodos.length + 1,
+        id: listTodos.length + 2,
+        parentGroupTodos: parentGroup,
         title: titleTodo,
         content: contentTodo,
         completed: false,
         rate,
     }
 
-    const createNewTodo = () => {
+    const addNewTodo = () => {
         setTodos((prevState) => [...prevState, newTodo])
+        console.log(newTodo)
+    }
+    const closeNewTodo = () => {
+        parentGroup.length > 0 ? parentGroup : setParentGroup('Без группы')
         setIsOpenNewTodo((prevState) => !prevState)
+        addNewTodo()
     }
 
     return (
@@ -44,11 +53,21 @@ const CreateTodo = ({
                 onChange={(event) => setContentTodo(() => event.target.value)}
                 placeholder="Описание задачи"
             ></textarea>
+            <select
+                value={parentGroup}
+                onChange={(event) => setParentGroup(() => event.target.value)}
+            >
+                {todoGroup.map((group) => (
+                    <option key={group} value={group}>
+                        {group}
+                    </option>
+                ))}
+            </select>
             <RateTodo rate={rate} setRate={setRate} />
             <Button
                 className={styles.button}
                 name="Создать"
-                getEvent={createNewTodo}
+                getEvent={closeNewTodo}
             />
         </div>
     )

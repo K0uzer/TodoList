@@ -8,27 +8,27 @@ export const todosSlice = createSlice({
     name: 'todo',
     initialState,
     reducers: {
-        addTodo: (state, action: PayloadAction<string>) => {
-            const newTodo: Todo = {
-                id: Date.now(),
-                title: action.payload,
-                content: action.payload,
-                completed: false,
-            }
-            state.push(newTodo)
-        },
+        // addTodo: (state, action: PayloadAction<string>) => {
+        //     const newTodo: Todo = {
+        //         id: Date.now(),
+        //         title: action.payload,
+        //         content: action.payload,
+        //         completed: false,
+        //     }
+        //     state.push(newTodo)
+        // },
         // toggleTodo: (state, action: PayloadAction<number>) => {
         //     const todo = state.find((todo) => todo.id === action.payload)
         //     if (todo) {
         //         todo.completed = !todo.completed
         //     }
         // },
-        removeTodo: (state, action: PayloadAction<number>) => {
-            return state.filter((todo) => todo.id !== action.payload)
-        },
+        // removeTodo: (state, action: PayloadAction<number>) => {
+        //     return state.filter((todo) => todo.id !== action.payload)
+        // },
     },
 })
 
-export const { addTodo, removeTodo } = todosSlice.actions
+// export const {} = todosSlice.actions
 
 export default todosSlice.reducer

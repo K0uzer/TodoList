@@ -13,44 +13,102 @@ import './App.css'
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>([
-        { id: 1, title: '12', content: 'daw', completed: true, rate: 1 },
-        { id: 2, title: '12', content: 'daw', completed: false, rate: 2 },
-        { id: 3, title: '12', content: 'daw', completed: true, rate: 3 },
-        { id: 4, title: '12', content: 'daw', completed: false, rate: 1 },
-        { id: 5, title: '12', content: 'daw', completed: true, rate: 4 },
+        {
+            id: 0,
+            parentGroupTodos: 'Без группы',
+            title: '12',
+            content: 'daw',
+            completed: true,
+            rate: 1,
+        },
+        {
+            id: 1,
+            parentGroupTodos: 'Без группы',
+            title: '12',
+            content: 'daw',
+            completed: false,
+            rate: 2,
+        },
+        {
+            id: 2,
+            parentGroupTodos: 'work',
+            title: '12',
+            content: 'daw',
+            completed: true,
+            rate: 3,
+        },
+        {
+            id: 3,
+            parentGroupTodos: 'Без группы',
+            title: '12',
+            content: 'daw',
+            completed: false,
+            rate: 1,
+        },
+        {
+            id: 4,
+            parentGroupTodos: 'work',
+            title: '12',
+            content: 'daw',
+            completed: true,
+            rate: 4,
+        },
     ])
+    const [todoGroup, setTodoGroup] = useState(['Без группы', 'work'])
     const [isLoad, setIsLoad] = useState(false)
     const [isOpenNewTodo, setIsOpenNewTodo] = useState(false)
 
-    // const loader = () => setIsLoad((prevState) => !prevState)
+    const addListenerOfLoad = () =>
+        window.addEventListener('load ', () =>
+            setIsLoad((prevState) => !prevState),
+        )
+
+    const removeListenerOfLoad = () =>
+        window.removeEventListener('load ', () =>
+            setIsLoad((prevState) => !prevState),
+        )
 
     useEffect(() => {
-        // window.addEventListener('load', loader)
-
+        addListenerOfLoad()
+        console.log(1)
         return () => {
-            // window.removeEventListener('load', loader)
+            removeListenerOfLoad()
         }
-    })
+    }, [])
+
+    const filteredTodos = (array: Todo[], titleGroup: string) =>
+        array.filter((element) => element.parentGroupTodos === titleGroup)
 
     return (
         <>
             {!isLoad ? (
                 <>
                     <Header />
-                    <Panel listTodos={todos} setNewTodo={setIsOpenNewTodo} />
+                    <Panel
+                        listTodos={todos}
+                        setNewTodo={setIsOpenNewTodo}
+                        todoGroup={todoGroup}
+                        setTodoGroup={setTodoGroup}
+                    />
                     {isOpenNewTodo && (
                         <CreateTodo
                             listTodos={todos}
                             setTodos={setTodos}
                             setIsOpenNewTodo={setIsOpenNewTodo}
+                            todoGroup={todoGroup}
                         />
                     )}
                     <ContentContainer>
                         {todos.length ? (
-                            <TodoList
-                                listTodos={todos}
-                                setListTodos={setTodos}
-                            />
+                            todoGroup.map((item) => (
+                                <div key={item}>
+                                    <h2>{item}</h2>
+                                    <TodoList
+                                        listTodos={filteredTodos(todos, item)}
+                                        setListTodos={setTodos}
+                                    />
+                                </div>
+                            ))
                         ) : (
                             <EmptyList />
                         )}
