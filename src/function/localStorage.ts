@@ -8,5 +8,3 @@ export const getGroupFromLocalStorage: string[] = () =>
 
 export const setTodoLocalStorage = (newState: Todo[]) =>
     window.localStorage.setItem('Todos', JSON.stringify('Todos', newState))
-
-export const removerTodos = () => window.localStorage.remove('Todos')

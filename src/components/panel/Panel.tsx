@@ -12,20 +12,20 @@ const Panel = ({
     setTodos,
     todosArray,
     listTodos,
-    setNewTodo,
+    setIsOpenNewTodo,
     todoGroup,
     setTodoGroup,
 }: {
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
     todosArray: Todo[]
     listTodos: Todo[]
-    setNewTodo: React.Dispatch<React.SetStateAction<boolean>>
+    setIsOpenNewTodo: React.Dispatch<React.SetStateAction<boolean>>
     todoGroup: string[]
     setTodoGroup: React.Dispatch<React.SetStateAction<string[]>>
 }) => {
     const [openNewGroup, setOpenNewGroup] = useState(false)
 
-    const getOpenCreateTodo = () => setNewTodo((prevState) => !prevState)
+    const getOpenCreateTodo = () => setIsOpenNewTodo((prevState) => !prevState)
 
     const getOpenNewGroup = () => setOpenNewGroup((prevState) => !prevState)
 
@@ -76,11 +76,10 @@ const Panel = ({
                 todoGroup={todoGroup}
                 setTodoGroup={setTodoGroup}
             />
-            <p>
+            <SearchBox setTodos={setTodos} todosArray={todosArray} />
+            <p className={styles.quantityTodos}>
                 Задач выполнено: {quantityCompletedTodo} из {listTodos.length}
             </p>
-            <SearchBox setTodos={setTodos} todosArray={todosArray} />
-            <SortBox />
         </div>
     )
 }

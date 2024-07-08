@@ -11,71 +11,47 @@ import {
     getGroupFromLocalStorage,
     getTodoFromLocalStorage,
 } from './function/localStorage'
+import TodoGroup from './components/todo/TodoGroup'
 
 import './App.css'
-import TodoGroup from './components/todo/TodoGroup'
 
 const todosArray = [
     {
         id: 0,
         parentGroupTodos: 'Без группы',
-        title: 'Купить что-то там ',
-        content: 'daw',
+        title: 'Сойздайте свою первую задачу!',
+        content: 'Моя первая задача!',
         completed: true,
-        rate: 1,
-    },
-    {
-        id: 1,
-        parentGroupTodos: 'Без группы',
-        title: 'Купить что-то там',
-        content: 'daw',
-        completed: false,
-        rate: 2,
-    },
-    {
-        id: 2,
-        parentGroupTodos: 'work',
-        title: 'Не Купить что-то там да-да-да',
-        content: 'daw',
-        completed: true,
-        rate: 3,
-    },
-    {
-        id: 3,
-        parentGroupTodos: 'Без группы',
-        title: 'Apple 12',
-        content: 'Купить что-то там',
-        completed: false,
-        rate: 1,
-    },
-    {
-        id: 4,
-        parentGroupTodos: 'work',
-        title: 'Купить что-то там',
-        content: 'daw',
-        completed: true,
-        rate: 4,
+        rate: 5,
     },
 ]
 
 const groupArray = ['Без группы', 'work']
 
-window.localStorage.setItem('Todos', JSON.stringify(todosArray))
-window.localStorage.setItem('Group', JSON.stringify(groupArray))
-
 function App() {
     const [todos, setTodos] = useState<Todo[]>(getTodoFromLocalStorage)
-    const [todoGroup, setTodoGroup] = useState(getGroupFromLocalStorage)
-    const [isLoad, setIsLoad] = useState(false)
+    const [todoGroup, setTodoGroup] = useState(
+        getGroupFromLocalStorage.length
+            ? getGroupFromLocalStorage
+            : ['Без группы'],
+    )
+    const [isLoad, setIsLoad] = useState(true)
     const [isOpenNewTodo, setIsOpenNewTodo] = useState(false)
 
+    useEffect(() => {
+        window.localStorage.setItem('Todos', JSON.stringify(todosArray))
+        window.localStorage.setItem('Group', JSON.stringify(groupArray))
+    }, [])
+
     const addListenerOfLoad = () =>
-        window.addEventListener('load ', () =>
+        window.addEventListener(
+            'load ',
             setIsLoad((prevState) => !prevState),
         )
 
     const removeListenerOfLoad = () =>
-        window.removeEventListener('load ', () =>
+        window.removeEventListener(
+            'load ',
             setIsLoad((prevState) => !prevState),
         )
 
@@ -98,8 +74,6 @@ function App() {
         }
     }, [])
 
-    const sortTodos = () => {}
-
     return (
         <>
             {!isLoad ? (
@@ -109,7 +83,7 @@ function App() {
                         setTodos={setTodos}
                         todosArray={todosArray}
                         listTodos={todos}
-                        setNewTodo={setIsOpenNewTodo}
+                        setIsOpenNewTodo={setIsOpenNewTodo}
                         todoGroup={todoGroup}
                         setTodoGroup={setTodoGroup}
                     />

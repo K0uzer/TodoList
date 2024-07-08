@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { Todo } from '../../types'
 import RateTodo from '../../UI/RateTodo'
 import Button from '../../UI/Button'
-import { removerTodos } from '../../function/localStorage'
 
 import styles from './CreateTodo.module.css'
 
@@ -37,21 +36,8 @@ const CreateTodo = ({
     const addNewTodo = () => {
         setTodos((prevState) => [...prevState, newTodo])
         console.log(listTodos)
-        removerTodos()
-        setTodoLocalStorage(listTodos)
-        // window.localStorage.setItem(
-        //     'Todos',
-        //     JSON.stringify(
-        //         window.localStorage.getItem('Todos')
-        //             ? JSON.parse(window.localStorage.getItem('Todos')!)
-        //             : [],
-        //     ),
-        // )
-        console.log(newTodo)
-    }
-
-    const closeNewTodo = () => {
-        if (titleTodo.length > 0 && contentTodo.length > 0) addNewTodo()
+        window.localStorage.setItem('Todos', JSON.stringify(listTodos))
+        console.log(window.localStorage.getItem('Todos'))
         setIsOpenNewTodo((prevState) => !prevState)
     }
 
@@ -85,12 +71,14 @@ const CreateTodo = ({
                 <Button
                     className={styles.button}
                     name="Создать"
-                    getEvent={closeNewTodo}
+                    getEvent={() =>
+                        titleTodo.length && contentTodo.length && addNewTodo()
+                    }
                 />
                 <Button
                     className={styles.button}
                     name="Закрыть"
-                    getEvent={closeNewTodo}
+                    getEvent={() => setIsOpenNewTodo((prevState) => !prevState)}
                 />
             </div>
         </div>
