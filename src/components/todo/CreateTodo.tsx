@@ -22,8 +22,10 @@ const CreateTodo = ({
     const [parentGroup, setParentGroup] = useState('')
     const [rate, setRate] = useState(0)
 
+    const dateCurrent = Date.now()
+
     const newTodo = {
-        id: listTodos.length + 1,
+        id: dateCurrent,
         parentGroupTodos: parentGroup.length > 0 ? parentGroup : 'Без группы',
         title: titleTodo,
         content: contentTodo,
@@ -33,6 +35,8 @@ const CreateTodo = ({
 
     const addNewTodo = () => {
         setTodos((prevState) => [...prevState, newTodo])
+        console.log(listTodos)
+        JSON.stringify(window.localStorage('Todos', listTodos))
         console.log(newTodo)
     }
 

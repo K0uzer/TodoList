@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React from 'react'
+
+import { Todo } from '../../types'
 
 const GroupList = ({
+    listTodos,
     todoGroup,
     setTodoGroup,
 }: {
+    listTodos: Todo[]
     todoGroup: string[]
     setTodoGroup: React.Dispatch<React.SetStateAction<string[]>>
 }) => {
-    const [groups, setGroups] = useState(todoGroup)
     const filterGroup = (value: string) =>
-        groups.filter((item) => item === value)
+        setTodoGroup(todoGroup.filter((item) => item === value))
 
     return (
         <select onChange={(event) => filterGroup(event.target.value)}>

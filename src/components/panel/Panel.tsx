@@ -9,11 +9,15 @@ import styles from './Panel.module.css'
 import GroupList from './GroupList'
 
 const Panel = ({
+    setTodos,
+    todosArray,
     listTodos,
     setNewTodo,
     todoGroup,
     setTodoGroup,
 }: {
+    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
+    todosArray: Todo[]
     listTodos: Todo[]
     setNewTodo: React.Dispatch<React.SetStateAction<boolean>>
     todoGroup: string[]
@@ -66,11 +70,15 @@ const Panel = ({
                     className={styles.button}
                 />
             )}
-            <GroupList todoGroup={todoGroup} setTodoGroup={setTodoGroup} />
+            <GroupList
+                listTodos={listTodos}
+                todoGroup={todoGroup}
+                setTodoGroup={setTodoGroup}
+            />
             <p>
                 Задач выполнено: {quantityCompletedTodo} из {listTodos.length}
             </p>
-            <SearchBox />
+            <SearchBox setTodos={setTodos} todosArray={todosArray} />
             <SortBox />
         </div>
     )
