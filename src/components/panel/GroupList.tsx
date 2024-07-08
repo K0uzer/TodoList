@@ -2,6 +2,8 @@ import React from 'react'
 
 import { Todo } from '../../types'
 
+import styles from './GroupList.module.css'
+
 const GroupList = ({
     listTodos,
     todoGroup,
@@ -15,9 +17,12 @@ const GroupList = ({
         setTodoGroup(todoGroup.filter((item) => item === value))
 
     return (
-        <select onChange={(event) => filterGroup(event.target.value)}>
-            <option key="all" value="Без фильтра групп">
-                Без фильтра групп
+        <select
+            className={styles.select}
+            onChange={(event) => filterGroup(event.target.value)}
+        >
+            <option key="all" value="Без фильтра">
+                Без фильтра
             </option>
             {todoGroup.map((group) => (
                 <option key={group} value={group}>

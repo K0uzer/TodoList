@@ -1,7 +1,9 @@
 import React from 'react'
 
 import { Todo } from '../../types'
-import { todoFromLocalStorage } from '../function/localStorage'
+import { getTodoFromLocalStorage } from '../../function/localStorage'
+
+import styles from './SearchBox.module.css'
 
 const SearchBox = ({
     setTodos,
@@ -12,11 +14,12 @@ const SearchBox = ({
 }) => {
     const searchData = (value: string) =>
         setTodos(() =>
-            todoFromLocalStorage.filter((item) => item.title === value),
+            getTodoFromLocalStorage.filter((item) => item.title === value),
         )
 
     return (
         <input
+            className={styles.input}
             type="text"
             placeholder="Поиск по названию"
             onChange={(event) => searchData(event.target.value)}

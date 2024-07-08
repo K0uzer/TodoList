@@ -1,7 +1,13 @@
 import { ReactNode } from 'react'
 
-const ContentContainer = ({ children }: { children: ReactNode }) => {
-    return <section>{children}</section>
+import styles from './ContentContainer.module.css'
+
+const ContentContainer = ({
+    children,
+}: {
+    children: ReactNode
+}) => {
+    return <section className={styles.contentContainer}>{children}</section>
 }
 
 export default ContentContainer

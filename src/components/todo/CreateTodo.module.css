@@ -6,4 +6,42 @@
 }
 
 .button {
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 8px;
+    margin-top: 5%;
+    height: 4em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+    cursor: pointer;
+    transition: 0.8s ease-out;
+    &:hover {
+        background-color: rgb(233, 233, 139);
+        transition: 0.8s ease-out;
+    }
+}
+
+.input {
+    border: none;
+    border-radius: 8px;
+    margin-top: 1%;
+    height: 6em;
+    width: 50%;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+.select {
+    border: none;
+    border-radius: 8px;
+    line-height: 40px;
+    margin-top: 1%;
+    width: 50%;
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+    cursor: pointer;
 }

@@ -1,5 +1,5 @@
 .todoList {
     display: flex;
     flex-wrap: wrap;
-    gap: 2%;
+    gap: 1%;
 }

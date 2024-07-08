@@ -1,39 +1,24 @@
+import React from 'react'
+
 import Button from '../../UI/Button'
-import { Todo } from '../../types'
 
 import styles from './Controllers.module.css'
 
 const ContainerControllers = ({
-    todoItem,
+    setIsTodoOpen,
     editOpen,
     editTodo,
     removeTodo,
-    toggleStateTodo,
 }: {
-    todoItem: Todo
+    setIsTodoOpen: React.Dispatch<React.SetStateAction<boolean>>
     editOpen: boolean
     editTodo: () => void
     removeTodo: () => void
-    toggleStateTodo: () => void
 }) => {
+    const closeTodo = () => setIsTodoOpen((prevState) => !prevState)
+
     return (
         <div className={styles.containerControllers}>
-            <div>
-                <span>Состояние задачи:</span>
-                <input
-                    className={styles.checkbox}
-                    type="checkbox"
-                    name="compile"
-                    alt="Состояние задачи"
-                    checked={todoItem.completed}
-                    onChange={toggleStateTodo}
-                />
-            </div>
-            <Button
-                className={styles.button}
-                name="Удалить"
-                getEvent={removeTodo}
-            />
             {editOpen ? (
                 <Button
                     className={styles.button}
@@ -47,6 +32,16 @@ const ContainerControllers = ({
                     getEvent={editTodo}
                 />
             )}
+            <Button
+                className={styles.button}
+                name="Закрыть"
+                getEvent={closeTodo}
+            />
+            <Button
+                className={styles.button}
+                name="Удалить"
+                getEvent={removeTodo}
+            />
         </div>
     )
 }

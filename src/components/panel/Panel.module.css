@@ -1,8 +1,33 @@
 .panel {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
     padding: 1%;
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .button {
+    width: 13em;
+    border: none;
+    border-radius: 8px;
+    height: 4em;
+    padding: 1.5em;
+    margin-top: 5px;
+    background-color: #f9f9f9;
+    transition: 0.8s ease-out;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(233, 233, 139);
+        transition: 0.8s ease-out;
+    }
+}
+
+.input {
+    width: 13em;
+    height: 4em;
+    margin-top: 5px;
+    border: none;
+    border-radius: 8px;
+    padding: 1.5em;
 }

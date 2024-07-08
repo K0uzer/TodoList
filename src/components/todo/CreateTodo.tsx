@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 
 import { Todo } from '../../types'
 import RateTodo from '../../UI/RateTodo'
+import Button from '../../UI/Button'
+import { removerTodos } from '../../function/localStorage'
 
 import styles from './CreateTodo.module.css'
-import Button from '../../UI/Button'
 
 const CreateTodo = ({
     listTodos,
@@ -36,7 +37,16 @@ const CreateTodo = ({
     const addNewTodo = () => {
         setTodos((prevState) => [...prevState, newTodo])
         console.log(listTodos)
-        JSON.stringify(window.localStorage('Todos', listTodos))
+        removerTodos()
+        setTodoLocalStorage(listTodos)
+        // window.localStorage.setItem(
+        //     'Todos',
+        //     JSON.stringify(
+        //         window.localStorage.getItem('Todos')
+        //             ? JSON.parse(window.localStorage.getItem('Todos')!)
+        //             : [],
+        //     ),
+        // )
         console.log(newTodo)
     }
 
@@ -48,16 +58,19 @@ const CreateTodo = ({
     return (
         <div className={styles.createTodo}>
             <input
+                className={styles.input}
                 value={titleTodo}
                 onChange={(event) => setTitleTodo(event.target.value)}
                 placeholder="Имя задачи"
             />
             <textarea
+                className={styles.input}
                 value={contentTodo}
                 onChange={(event) => setContentTodo(() => event.target.value)}
                 placeholder="Описание задачи"
             ></textarea>
             <select
+                className={styles.select}
                 value={parentGroup}
                 onChange={(event) => setParentGroup(() => event.target.value)}
             >

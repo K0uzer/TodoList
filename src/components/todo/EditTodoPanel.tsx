@@ -26,7 +26,7 @@ const editTodoPanel = ({
                     }))
                 }
             />
-            <textarea
+            <input
                 className={styles.content}
                 value={content}
                 onChange={(event) =>

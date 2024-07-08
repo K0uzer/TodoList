@@ -1,6 +1,20 @@
 .containerControllers {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: column;
+}
+
+.button {
+    width: 200px;
+    height: auto;
+    min-height: 33.3px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    transition: 0.7s ease-out;
+    &:hover {
+        color: white;
+        background-color: rgb(33, 120, 202);
+        transition: 0.9 ease-out;
+    }
 }

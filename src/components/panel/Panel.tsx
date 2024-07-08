@@ -59,6 +59,7 @@ const Panel = ({
             />
             {openNewGroup ? (
                 <input
+                    className={styles.input}
                     type="text"
                     placeholder="Введите название задачи"
                     onKeyDown={(event) => createNewGroupTodo(event)}

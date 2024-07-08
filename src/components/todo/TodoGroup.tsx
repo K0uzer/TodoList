@@ -29,11 +29,11 @@ const TodoGroup = ({
         <>
             {todoGroup.map((group, index) => (
                 <div key={newKey + index}>
-                    <div>
+                    <div className={styles.group}>
                         <h3>{group}</h3>
                         {group !== 'Без группы' && (
                             <Button
-                                className={''}
+                                className={styles.button}
                                 name="Удалить группу"
                                 getEvent={() => removeGroup(group)}
                             />

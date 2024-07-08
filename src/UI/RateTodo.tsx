@@ -1,4 +1,4 @@
-import { Flex, Rate } from 'antd'
+import { Rate } from 'antd'
 import React from 'react'
 
 const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful']
@@ -10,11 +10,7 @@ const RateTodo = ({
     rate: number
     setRate: React.Dispatch<React.SetStateAction<number>>
 }) => {
-    return (
-        <Flex gap="middle" vertical>
-            <Rate tooltips={desc} onChange={setRate} value={rate} />
-        </Flex>
-    )
+    return <Rate tooltips={desc} onChange={setRate} value={rate} />
 }
 
 export default RateTodo

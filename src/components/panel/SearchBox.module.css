@@ -1,0 +1,10 @@
+.input {
+    border: none;
+    border-radius: 8px;
+    height: 4em;
+    width: 13em;
+    margin-top: 5px;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
