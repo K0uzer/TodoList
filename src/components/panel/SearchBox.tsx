@@ -7,15 +7,14 @@ import styles from './SearchBox.module.css'
 
 const SearchBox = ({
     setTodos,
-    todosArray,
 }: {
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
-    todosArray: Todo[]
 }) => {
-    const searchData = (value: string) =>
-        setTodos(() =>
-            getTodoFromLocalStorage.filter((item) => item.title === value),
-        )
+    const searchData = (value: string) => {
+        setTodos((prevState) => console.log(prevState))
+    }
+
+    const getData = () => setTodos(getTodoFromLocalStorage)
 
     return (
         <input

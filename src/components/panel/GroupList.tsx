@@ -3,6 +3,7 @@ import React from 'react'
 import { Todo } from '../../types'
 
 import styles from './GroupList.module.css'
+import { getGroupFromLocalStorage } from '../../function/localStorage'
 
 const GroupList = ({
     listTodos,
@@ -14,7 +15,9 @@ const GroupList = ({
     setTodoGroup: React.Dispatch<React.SetStateAction<string[]>>
 }) => {
     const filterGroup = (value: string) =>
-        setTodoGroup(todoGroup.filter((item) => item === value))
+        value !== 'Без фильтра'
+            ? setTodoGroup(todoGroup.filter((item) => item === value))
+            : setTodoGroup(getGroupFromLocalStorage())
 
     return (
         <select

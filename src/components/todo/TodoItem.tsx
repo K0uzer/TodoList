@@ -73,10 +73,7 @@ const TodoItem = ({
                         )}
                         <div className={styles.rateContainer}>
                             <p>Оценка задачи:</p>
-                            <RateTodo
-                                rate={rate}
-                                setRate={setRate}
-                            />
+                            <RateTodo rate={rate} setRate={setRate} />
                         </div>
                     </div>
                     <Controllers

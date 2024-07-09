@@ -35,9 +35,7 @@ const CreateTodo = ({
 
     const addNewTodo = () => {
         setTodos((prevState) => [...prevState, newTodo])
-        console.log(listTodos)
         window.localStorage.setItem('Todos', JSON.stringify(listTodos))
-        console.log(window.localStorage.getItem('Todos'))
         setIsOpenNewTodo((prevState) => !prevState)
     }
 

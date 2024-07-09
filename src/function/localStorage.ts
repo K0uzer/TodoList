@@ -1,10 +1,20 @@
 import { Todo } from '../types'
 
-export const getTodoFromLocalStorage: Todo[] = () =>
+export const getTodoFromLocalStorage = () =>
     JSON.parse(window.localStorage.getItem('Todos'))
 
-export const getGroupFromLocalStorage: string[] = () =>
+export const setTodoFromLocalStorage = (array) =>
+    JSON.stringify(window.localStorage.setItem('Todos', array))
+
+export const getGroupFromLocalStorage = () =>
     JSON.parse(window.localStorage.getItem('Group'))
 
-export const setTodoLocalStorage = (newState: Todo[]) =>
+export const setGroupFromLocalStorage = (array) =>
+    JSON.stringify(window.localStorage.getItem('Group', array))
+
+export const setTodoLocalStorage = (newState) =>
     window.localStorage.setItem('Todos', JSON.stringify('Todos', newState))
+
+export const clearLocalStorageElement = (element) => {
+    window.localStorage.removeItem(element)
+}

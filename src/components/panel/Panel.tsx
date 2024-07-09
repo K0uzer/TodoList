@@ -2,22 +2,24 @@ import React, { useMemo, useState } from 'react'
 
 import Button from '../../UI/Button'
 import SearchBox from './SearchBox'
-import SortBox from './SortBox'
 import { Todo } from '../../types'
 
 import styles from './Panel.module.css'
 import GroupList from './GroupList'
+import {
+    clearLocalStorageElement,
+    getGroupFromLocalStorage,
+    setGroupFromLocalStorage,
+} from '../../function/localStorage'
 
 const Panel = ({
     setTodos,
-    todosArray,
     listTodos,
     setIsOpenNewTodo,
     todoGroup,
     setTodoGroup,
 }: {
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
-    todosArray: Todo[]
     listTodos: Todo[]
     setIsOpenNewTodo: React.Dispatch<React.SetStateAction<boolean>>
     todoGroup: string[]
@@ -38,6 +40,10 @@ const Panel = ({
             event.target.value.length > 0
         ) {
             setTodoGroup((prevState) => [...prevState, event.target.value])
+            clearLocalStorageElement('Group')
+            console.log(getGroupFromLocalStorage())
+            setGroupFromLocalStorage(todoGroup)
+            console.log(getGroupFromLocalStorage())
             setOpenNewGroup((prevState) => !prevState)
         } else if (event.key === 'Escape') {
             event.preventDefault()
@@ -46,7 +52,10 @@ const Panel = ({
     }
 
     const quantityCompletedTodo = useMemo(
-        () => listTodos.filter((todo) => todo.completed === true).length,
+        () =>
+            listTodos.length
+                ? listTodos.filter((todo) => todo.completed === true).length
+                : [],
         [listTodos],
     )
 
@@ -76,7 +85,7 @@ const Panel = ({
                 todoGroup={todoGroup}
                 setTodoGroup={setTodoGroup}
             />
-            <SearchBox setTodos={setTodos} todosArray={todosArray} />
+            <SearchBox setTodos={setTodos} />
             <p className={styles.quantityTodos}>
                 Задач выполнено: {quantityCompletedTodo} из {listTodos.length}
             </p>

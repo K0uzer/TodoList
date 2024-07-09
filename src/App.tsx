@@ -26,7 +26,7 @@ const todosArray = [
     },
 ]
 
-const groupArray = ['Без группы', 'work']
+const groupArray = ['Без группы']
 
 function App() {
     const [todos, setTodos] = useState<Todo[]>(getTodoFromLocalStorage)
@@ -41,7 +41,7 @@ function App() {
     useEffect(() => {
         window.localStorage.setItem('Todos', JSON.stringify(todosArray))
         window.localStorage.setItem('Group', JSON.stringify(groupArray))
-    }, [])
+    }, [todos, todoGroup])
 
     const addListenerOfLoad = () =>
         window.addEventListener(
@@ -55,6 +55,13 @@ function App() {
             setIsLoad((prevState) => !prevState),
         )
 
+    useEffect(() => {
+        addListenerOfLoad()
+        return () => {
+            removeListenerOfLoad()
+        }
+    }, [])
+
     const removeGroup = (group: string) => {
         setTodoGroup((prevState) => prevState.filter((item) => item !== group))
         setTodos(
@@ -66,14 +73,6 @@ function App() {
         )
     }
 
-    useEffect(() => {
-        addListenerOfLoad()
-        console.log(1)
-        return () => {
-            removeListenerOfLoad()
-        }
-    }, [])
-
     return (
         <>
             {!isLoad ? (
@@ -81,7 +80,6 @@ function App() {
                     <Header />
                     <Panel
                         setTodos={setTodos}
-                        todosArray={todosArray}
                         listTodos={todos}
                         setIsOpenNewTodo={setIsOpenNewTodo}
                         todoGroup={todoGroup}
@@ -96,7 +94,7 @@ function App() {
                         />
                     )}
                     <ContentContainer>
-                        {todos.length ? (
+                        {todos?.length ? (
                             <TodoGroup
                                 todos={todos}
                                 todoGroup={todoGroup}
