@@ -3,3 +3,27 @@
     justify-content: center;
     align-items: center;
 }
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-weight: 300;
+    font-size: 58px;
+}
+
+@media (max-width: 1200px) {
+    h1 {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 28px;
+    }
+}

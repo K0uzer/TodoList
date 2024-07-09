@@ -7,13 +7,11 @@
     margin: 2%;
     border: 1px solid saddlebrown;
     background-color: rgba(139, 69, 19, 0.518);
-    transition: 1s ease-out;
 }
 
 .containerContent {
     width: 100%;
     height: auto;
-    transition: 3s ease-out;
 }
 
 .input {

@@ -86,9 +86,12 @@ const Panel = ({
                 setTodoGroup={setTodoGroup}
             />
             <SearchBox setTodos={setTodos} />
-            <p className={styles.quantityTodos}>
-                Задач выполнено: {quantityCompletedTodo} из {listTodos.length}
-            </p>
+            {!!listTodos.length && (
+                <p className={styles.quantityTodos}>
+                    Задач выполнено: {quantityCompletedTodo} из{' '}
+                    {listTodos.length}
+                </p>
+            )}
         </div>
     )
 }

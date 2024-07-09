@@ -15,33 +15,17 @@ import TodoGroup from './components/todo/TodoGroup'
 
 import './App.css'
 
-const todosArray = [
-    {
-        id: 0,
-        parentGroupTodos: 'Без группы',
-        title: 'Сойздайте свою первую задачу!',
-        content: 'Моя первая задача!',
-        completed: true,
-        rate: 5,
-    },
-]
-
-const groupArray = ['Без группы']
-
 function App() {
-    const [todos, setTodos] = useState<Todo[]>(getTodoFromLocalStorage)
-    const [todoGroup, setTodoGroup] = useState(
+    const [todos, setTodos] = useState<Todo[]>(
+        getTodoFromLocalStorage.length ? getTodoFromLocalStorage : [],
+    )
+    const [todoGroup, setTodoGroup] = useState<string[]>(
         getGroupFromLocalStorage.length
             ? getGroupFromLocalStorage
             : ['Без группы'],
     )
     const [isLoad, setIsLoad] = useState(true)
     const [isOpenNewTodo, setIsOpenNewTodo] = useState(false)
-
-    useEffect(() => {
-        window.localStorage.setItem('Todos', JSON.stringify(todosArray))
-        window.localStorage.setItem('Group', JSON.stringify(groupArray))
-    }, [todos, todoGroup])
 
     const addListenerOfLoad = () =>
         window.addEventListener(

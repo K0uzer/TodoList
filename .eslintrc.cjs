@@ -48,7 +48,6 @@ module.exports = {
         'block-scoped-var': 'error',
         camelcase: 'error',
         'capitalized-comments': 'error',
-        complexity: ['error', 5],
         eqeqeq: 'error',
         'func-name-matching': 'error',
         'grouped-accessor-pairs': 'error',

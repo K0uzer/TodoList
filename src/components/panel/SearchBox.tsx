@@ -10,11 +10,13 @@ const SearchBox = ({
 }: {
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
 }) => {
-    const searchData = (value: string) => {
-        setTodos((prevState) => console.log(prevState))
-    }
-
-    const getData = () => setTodos(getTodoFromLocalStorage)
+    const searchData = (value: string) =>
+        value.length > 3 &&
+        setTodos(() =>
+            getTodoFromLocalStorage().filter((item: Todo) =>
+                item.title.includes(value),
+            ),
+        )
 
     return (
         <input
