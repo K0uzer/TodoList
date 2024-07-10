@@ -41,9 +41,7 @@ function App() {
 
     useEffect(() => {
         addListenerOfLoad()
-        return () => {
-            removeListenerOfLoad()
-        }
+        return () => removeListenerOfLoad()
     }, [])
 
     const removeGroup = (group: string) => {
