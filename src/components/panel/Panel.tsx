@@ -5,7 +5,6 @@ import SearchBox from './SearchBox'
 import { Todo } from '../../types'
 
 import styles from './Panel.module.css'
-import GroupList from './GroupList'
 import {
     clearLocalStorageElement,
     setGroupFromLocalStorage,
@@ -15,14 +14,11 @@ const Panel = ({
     setSortedData,
     listTodos,
     setIsOpenNewTodo,
-    todoGroup,
     setTodoGroup,
 }: {
     setSortedData: React.Dispatch<React.SetStateAction<Todo[]>>
-    setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
     listTodos: Todo[]
     setIsOpenNewTodo: React.Dispatch<React.SetStateAction<boolean>>
-    todoGroup: string[]
     setTodoGroup: React.Dispatch<React.SetStateAction<string[]>>
 }) => {
     const [openNewGroup, setOpenNewGroup] = useState(false)
@@ -79,11 +75,6 @@ const Panel = ({
                     className={styles.button}
                 />
             )}
-            <GroupList
-                listTodos={listTodos}
-                todoGroup={todoGroup}
-                setTodoGroup={setTodoGroup}
-            />
             <SearchBox listTodos={listTodos} setSortedData={setSortedData} />
             {!!listTodos.length && (
                 <p className={styles.quantityTodos}>

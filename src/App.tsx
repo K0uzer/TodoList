@@ -62,10 +62,8 @@ function App() {
                     <Header />
                     <Panel
                         setSortedData={setSortedData}
-                        setTodos={setTodos}
                         listTodos={todos}
                         setIsOpenNewTodo={setIsOpenNewTodo}
-                        todoGroup={todoGroup}
                         setTodoGroup={setTodoGroup}
                     />
                     {isOpenNewTodo && (
