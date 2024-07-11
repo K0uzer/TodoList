@@ -19,11 +19,13 @@ function App() {
     const [todos, setTodos] = useState<Todo[]>(
         getTodoFromLocalStorage.length ? getTodoFromLocalStorage : [],
     )
+
     const [todoGroup, setTodoGroup] = useState<string[]>(
         getGroupFromLocalStorage.length
             ? getGroupFromLocalStorage
             : ['Без группы'],
     )
+    const [sortedData, setSortedData] = useState<Todo[]>([])
     const [isLoad, setIsLoad] = useState(true)
     const [isOpenNewTodo, setIsOpenNewTodo] = useState(false)
 
@@ -61,6 +63,7 @@ function App() {
                 <>
                     <Header />
                     <Panel
+                        setSortedData={setSortedData}
                         setTodos={setTodos}
                         listTodos={todos}
                         setIsOpenNewTodo={setIsOpenNewTodo}
@@ -78,7 +81,7 @@ function App() {
                     <ContentContainer>
                         {todos?.length ? (
                             <TodoGroup
-                                todos={todos}
+                                todos={sortedData.length ? sortedData : todos}
                                 todoGroup={todoGroup}
                                 setTodos={setTodos}
                                 removeGroup={removeGroup}

@@ -29,11 +29,19 @@ const TodoItem = ({
         setIsTodoOpen((prevState) => !prevState)
     }
 
-    const toggleStateTodo = () =>
+    const toggleStateTodo = () => {
+        setTodos((prevState) => [
+            ...prevState.map((item) =>
+                item.id === todo.id
+                    ? { ...item, completed: !item.completed }
+                    : item,
+            ),
+        ])
         setTodoItem((prevState) => ({
             ...prevState,
             completed: !prevState.completed,
         }))
+    }
 
     return (
         <div className={styles.todo}>

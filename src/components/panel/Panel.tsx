@@ -8,17 +8,18 @@ import styles from './Panel.module.css'
 import GroupList from './GroupList'
 import {
     clearLocalStorageElement,
-    getGroupFromLocalStorage,
     setGroupFromLocalStorage,
 } from '../../function/localStorage'
 
 const Panel = ({
+    setSortedData,
     setTodos,
     listTodos,
     setIsOpenNewTodo,
     todoGroup,
     setTodoGroup,
 }: {
+    setSortedData: React.Dispatch<React.SetStateAction<Todo[]>>
     setTodos: React.Dispatch<React.SetStateAction<Todo[]>>
     listTodos: Todo[]
     setIsOpenNewTodo: React.Dispatch<React.SetStateAction<boolean>>
@@ -41,9 +42,7 @@ const Panel = ({
         ) {
             setTodoGroup((prevState) => [...prevState, event.target.value])
             clearLocalStorageElement('Group')
-            console.log(getGroupFromLocalStorage())
             setGroupFromLocalStorage(todoGroup)
-            console.log(getGroupFromLocalStorage())
             setOpenNewGroup((prevState) => !prevState)
         } else if (event.key === 'Escape') {
             event.preventDefault()
@@ -85,10 +84,12 @@ const Panel = ({
                 todoGroup={todoGroup}
                 setTodoGroup={setTodoGroup}
             />
-            <SearchBox setTodos={setTodos} />
+            <SearchBox listTodos={listTodos} setSortedData={setSortedData} />
             {!!listTodos.length && (
                 <p className={styles.quantityTodos}>
-                    Задач выполнено: {quantityCompletedTodo} из{' '}
+                    Задач выполнено:
+                    {quantityCompletedTodo}
+                    из
                     {listTodos.length}
                 </p>
             )}

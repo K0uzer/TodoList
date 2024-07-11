@@ -41,7 +41,7 @@ const TodoGroup = ({
                     </div>
                     <TodoList
                         listTodos={filteredTodos(todos, group)}
-                        setListTodos={setTodos}
+                        setTodos={setTodos}
                     />
                 </div>
             ))}

@@ -16,7 +16,9 @@ const GroupList = ({
 }) => {
     const filterGroup = (value: string) =>
         value !== 'Без фильтра'
-            ? setTodoGroup(todoGroup.filter((item) => item === value))
+            ? setTodoGroup((prevState) =>
+                  prevState.filter((item) => item === value),
+              )
             : setTodoGroup(getGroupFromLocalStorage())
 
     return (
