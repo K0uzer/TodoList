@@ -1,5 +1,3 @@
-import { Todo } from '../types'
-
 export const getTodoFromLocalStorage = () =>
     JSON.parse(window.localStorage.getItem('Todos'))
 

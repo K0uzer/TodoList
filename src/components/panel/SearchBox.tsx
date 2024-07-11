@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { Todo } from '../../types'
-import { getTodoFromLocalStorage } from '../../function/localStorage'
 
 import styles from './SearchBox.module.css'
 
@@ -13,10 +12,9 @@ const SearchBox = ({
     listTodos: Todo[]
 }) => {
     const searchData = (value: string) => {
-        console.log(listTodos)
-        setSortedData(() => {
-            return listTodos.filter((item: Todo) => item.title.includes(value))
-        })
+        setSortedData(() =>
+            listTodos.filter((item: Todo) => item.title.includes(value)),
+        )
     }
 
     return (
@@ -25,7 +23,7 @@ const SearchBox = ({
             type="text"
             placeholder="Поиск по названию"
             onChange={(event) =>
-                event.target.value.length > 2 && searchData(event.target.value)
+                event.target.value.length > 1 && searchData(event.target.value)
             }
         />
     )

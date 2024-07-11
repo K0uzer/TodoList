@@ -26,18 +26,16 @@ function App() {
             : ['Без группы'],
     )
     const [sortedData, setSortedData] = useState<Todo[]>([])
-    const [isLoad, setIsLoad] = useState(true)
+    const [isLoad, setIsLoad] = useState(false)
     const [isOpenNewTodo, setIsOpenNewTodo] = useState(false)
 
     const addListenerOfLoad = () =>
-        window.addEventListener(
-            'load ',
+        window.addEventListener('load ', () =>
             setIsLoad((prevState) => !prevState),
         )
 
     const removeListenerOfLoad = () =>
-        window.removeEventListener(
-            'load ',
+        window.removeEventListener('load ', () =>
             setIsLoad((prevState) => !prevState),
         )
 
