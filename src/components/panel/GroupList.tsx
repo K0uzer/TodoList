@@ -6,7 +6,6 @@ import styles from './GroupList.module.css'
 import { getGroupFromLocalStorage } from '../../function/localStorage'
 
 const GroupList = ({
-    listTodos,
     todoGroup,
     setTodoGroup,
 }: {

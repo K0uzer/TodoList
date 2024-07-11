@@ -13,7 +13,6 @@ import {
 
 const Panel = ({
     setSortedData,
-    setTodos,
     listTodos,
     setIsOpenNewTodo,
     todoGroup,
@@ -35,14 +34,15 @@ const Panel = ({
     const createNewGroupTodo = (
         event: React.KeyboardEvent<HTMLInputElement>,
     ) => {
-        if (
-            event.key === 'Enter' &&
-            openNewGroup &&
-            event.target.value.length > 0
-        ) {
-            setTodoGroup((prevState) => [...prevState, event.target.value])
-            clearLocalStorageElement('Group')
-            setGroupFromLocalStorage(todoGroup)
+        const target = event.target as HTMLInputElement
+
+        if (event.key === 'Enter' && openNewGroup && target.value.length > 0) {
+            setTodoGroup((prevState) => {
+                const newGroup = [...prevState, target.value]
+                clearLocalStorageElement('Group')
+                setGroupFromLocalStorage()
+                return newGroup
+            })
             setOpenNewGroup((prevState) => !prevState)
         } else if (event.key === 'Escape') {
             event.preventDefault()

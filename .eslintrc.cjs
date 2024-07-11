@@ -41,7 +41,6 @@ module.exports = {
         'no-unreachable': 'error',
         'no-unreachable-loop': 'error',
         'no-unsafe-negation': 'error',
-        'no-unused-vars': 'error',
         'no-use-before-define': 'error',
         'require-atomic-updates': 'error',
         'use-isnan': 'error',
